@@ -39,7 +39,7 @@ const MenuItem = ({
 						color: #333;
 						text-decoration: none;
 					}
-					
+
 					${styles}
 				`}
 				href={url}

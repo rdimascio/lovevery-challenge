@@ -70,12 +70,12 @@ const Header = ({styles, children, ...props}) => {
 				/>
 				<MenuItem url="/cart">
 					<span
-						css={css`
-							display: none;
-							@media(min-width: ${Mobile}px): {
-								display: block;
+						css={{
+							display: 'none',
+							[`@media(min-width: ${Mobile}px)`]: {
+								display: 'inline-block',
 							}
-						`}
+						}}
 					>
 						Cart
 					</span>

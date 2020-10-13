@@ -1,26 +1,70 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import Header from './components/Header'
+import Body from './components/Body'
+import Footer from './components/Footer'
+import Login from './components/Login'
+import Hero from './components/Hero'
+import Home from './components/Home'
+import BrushStroke from './components/BrushStroke'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import 'bootstrap/dist/css/bootstrap-reboot.css'
+import './index.css'
+
+export const AuthContext = React.createContext()
+
+const initialState = {
+	isAuthenticated: false,
+	cartCount: 1,
 }
 
-export default App;
+const reducer = (state, action) => {
+	switch (action.type) {
+		case 'LOGIN':
+			return {
+				...state,
+				...action.payload,
+				error: null,
+				isAuthenticated: true,
+				cartCount: 1,
+			}
+		case 'LOGOUT':
+			return {
+				...state,
+				...action.payload,
+				greeting: null,
+				isAuthenticated: false,
+				cartCount: 1,
+			}
+		default:
+			return state
+	}
+}
+
+const App = () => {
+	const [state, dispatch] = React.useReducer(reducer, initialState)
+
+	return (
+		<AuthContext.Provider
+			value={{
+				state,
+				dispatch,
+			}}
+		>
+			<Header cart={state.cartCount} />
+			<Body>
+				{state.isAuthenticated ? (
+					<Home message={state.greeting} />
+				) : (
+					<>
+						<BrushStroke />
+						<Login />
+						<Hero />
+					</>
+				)}
+			</Body>
+			<Footer />
+		</AuthContext.Provider>
+	)
+}
+
+export default App

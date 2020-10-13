@@ -6,18 +6,24 @@ import Menu from '../Menu'
 import MenuItem from '../MenuItem'
 import FooterBanner from '../FooterBanner'
 import {footer as FooterMenu} from '../../constants/menus'
+import {Mobile} from '../../constants/media-queries'
 
 const FooterWrapper = styled.footer({
 	backgroundColor: '#62c56b',
 	padding: '40px 40px 80px',
 	display: 'flex',
 	justifyContent: 'space-between',
+	flexDirection: 'column',
+	[`@media(min-width: ${Mobile}px)`]: {
+		flexDirection: 'row',
+	},
 })
 
 const FooterInnerWrapper = styled.div({
 	display: 'flex',
 	alignItems: 'flex-start',
 	justifyContent: 'flex-start',
+	flexDirection: 'column',
 })
 
 const FooterHeading = styled.h4({
@@ -25,7 +31,10 @@ const FooterHeading = styled.h4({
 })
 
 const FooterMenuWrapper = styled.div({
-	padding: '0 40px',
+	padding: '20px 0',
+	[`@media(min-width: ${Mobile}px)`]: {
+		padding: '0 40px',
+	},
 })
 
 const FooterEmailLink = styled.a({
@@ -58,11 +67,20 @@ const Footer = (props) => {
 						colors={['#514F4E', '#FFF']}
 					/>
 					<FooterHeading>Email us</FooterHeading>
-					<FooterEmailLink href="mailto:heretohelp@lovevery.com">
+					<FooterEmailLink
+						css={{marginBottom: '20px'}}
+						href="mailto:heretohelp@lovevery.com"
+					>
 						heretohelp@lovevery.com
 					</FooterEmailLink>
 				</FooterInnerWrapper>
-				<FooterInnerWrapper>
+				<FooterInnerWrapper
+					css={{
+						[`@media(min-width: ${Mobile}px)`]: {
+							flexDirection: 'row',
+						},
+					}}
+				>
 					<FooterMenuWrapper>
 						<FooterHeading>Our Products</FooterHeading>
 						<Menu direction="column" align="flex-start">
@@ -87,7 +105,14 @@ const Footer = (props) => {
 							))}
 						</Menu>
 
-						<FooterHeading css={{marginTop: '60px'}}>
+						<FooterHeading
+							css={{
+								marginTop: '40px',
+								[`@media(min-width: ${Mobile}px)`]: {
+									marginTop: '60px',
+								},
+							}}
+						>
 							My New Life Podcast
 						</FooterHeading>
 						<Menu direction="column" align="flex-start">

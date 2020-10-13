@@ -8,11 +8,15 @@ import Spinner from '../../components/Spinner'
 import {AuthContext} from '../../App'
 import {signUpForm} from '../../constants/language'
 import isValidEmail from '../../helpers/isValidEmail'
+import {Mobile} from '../../constants/media-queries'
 
 const FormSectionWrapper = styled.div({
-	width: '75%',
+	width: '100%',
 	display: 'flex',
 	justifyContent: 'center',
+	[`@media(min-width: ${Mobile}px)`]: {
+		width: '75%',
+	},
 })
 
 const FormWrapper = styled.div({
@@ -20,11 +24,15 @@ const FormWrapper = styled.div({
 	flexDirection: 'column',
 	justifyContent: 'center',
 	alignItems: 'flex-start',
-	maxWidth: '320px',
+	maxWidth: '340px',
 	width: '100%',
 	height: '100%',
 	margin: 'auto',
+	padding: '40px 20px 160px',
 	position: 'relative',
+	[`@media(min-width: ${Mobile}px)`]: {
+		padding: '0',
+	}
 })
 
 const FormTitle = styled.h1({
@@ -249,6 +257,12 @@ const Login = (props) => {
 								!state.passwordTouch
 						)}
 						type="submit"
+						css={{
+							width: '100%',
+							[`@media(min-width: ${Mobile}px)`]: {
+								width: 'auto',
+							},
+						}}
 					>
 						{state.status === 'loading' ? <Spinner /> : 'Sign in'}
 					</Button>
@@ -260,7 +274,17 @@ const Login = (props) => {
 						Check out faster, manage subscriptions, and quickly find
 						tracking information.
 					</p>
-					<Button theme="secondary">Create Account</Button>
+					<Button
+						css={{
+							width: '100%',
+							[`@media(min-width: ${Mobile}px)`]: {
+								width: 'auto',
+							},
+						}}
+						theme="secondary"
+					>
+						Create Account
+					</Button>
 				</div>
 			</FormWrapper>
 		</FormSectionWrapper>

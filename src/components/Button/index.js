@@ -27,9 +27,9 @@ const Button = ({children, theme = 'primary', ...props}) => {
 				border: none;
 				padding: 10px 30px;
 				font-size: 14px;
+				font-weight: 600;
 
 				&[disabled] {
-					opacity: 0.5;
 					cursor: not-allowed;
 				}
 			`}
